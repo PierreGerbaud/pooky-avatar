@@ -11,6 +11,7 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 20px;
+  text-align: center;
 }
 
 h1 {
@@ -38,18 +39,20 @@ h1 {
 .row {
   display: flex;
   justify-content: center;
-  position: relative; /* Added for absolute positioning of requirement text */
+  position: relative;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ccc; /* Separator between rows */
 }
 
-.row::before { /* Point requirement on the left side */
+.row::before { /* Rotated "requires points" text */
   content: attr(data-requirement);
   position: absolute;
-  left: -100px; /* Adjust as necessary */
   top: 50%;
-  transform: translateY(-50%);
-  color: #f0b90b; /* Make the requirement readable */
+  left: -30px; /* Adjust as necessary */
+  transform: translateY(-50%) rotate(180deg);
+  transform-origin: left;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: #f0b90b;
   font-size: 0.8em;
   white-space: nowrap;
 }
@@ -74,7 +77,6 @@ h1 {
 .talent img:hover,
 .talent:hover {
   transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .talent p {
@@ -90,6 +92,19 @@ h1 {
   border-radius: 6px;
   z-index: 10;
 }
+
+/* Separator line and padding */
+.points-spent-separator,
+.player-level-separator {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+/* This class is for the div that separates the player level and the first talent row */
+.player-level-separator {
+  margin-top: 20px; /* Space above the separator */
+}
+
 
 </style>
 </head>
