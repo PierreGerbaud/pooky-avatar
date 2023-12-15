@@ -51,16 +51,19 @@ function renderTalentTrees() {
   });
 }
 
-// Function to create a DOM element for a talent
 function createTalentElement(talent, treeName) {
   const container = document.createElement('div');
   container.className = 'talent';
-  
+
   const image = document.createElement('img');
   image.src = talent.imageUrl;
   image.alt = talent.name;
   image.title = talent.description; // Tooltip for the description
   image.addEventListener('click', () => allocatePoint(talent.id, treeName));
+  image.addEventListener('contextmenu', (event) => {
+    event.preventDefault(); // Prevent the default context menu
+    removePoint(talent.id, treeName); // Call removePoint on right click
+  });
   container.appendChild(image);
 
   const name = document.createElement('p');
@@ -73,6 +76,17 @@ function createTalentElement(talent, treeName) {
   container.appendChild(points);
 
   return container;
+}
+
+// Add this new function to handle point removal
+function removePoint(talentId, treeName) {
+  let talent = talentTrees[treeName].talents.find(t => t.id === talentId);
+  if (talent.points > 0) {
+    talent.points--;
+    talentTrees[treeName].pointsSpent--;
+    updatePointsDisplay(talent, treeName);
+    updateTreePointsSpent(treeName);
+  }
 }
 
 

@@ -9,7 +9,7 @@
         "name": "Outcome", 
         "points": 0, 
         "maxPoints": 5, 
-        "imageUrl": "path_to_image1", 
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "+2% Base points on Outcome (per talent point)", 
         "row": 1 
       },
@@ -18,7 +18,7 @@
         "name": "Exact", 
         "points": 0, 
         "maxPoints": 5, 
-        "imageUrl": "path_to_image1", 
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "+2% Base points on Exact Score (per talent point)", 
         "row": 1 
       },
@@ -27,7 +27,7 @@
         "name": "Booster exchange", 
         "points": 0, 
         "maxPoints": 1, 
-        "imageUrl": "path_to_image1", 
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Get +1% points on all games. Your League Passes generate 1 less Booster.", 
         "row": 2 
       },
@@ -36,7 +36,7 @@
         "name": "Both Teams Scored", 
         "points": 0, 
         "maxPoints": 5, 
-        "imageUrl": "path_to_image1", 
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Get +2% points you predicted properly both teams to score.", 
         "row": 2 
       },
@@ -45,7 +45,7 @@
         "name": "Both Teams Didn't Score", 
         "points": 0, 
         "maxPoints": 5, 
-        "imageUrl": "path_to_image1", 
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Get +2% points you predicted properly only 1 team to score.", 
         "row": 2 
       }
@@ -62,7 +62,7 @@
         "name": "Aggression", 
         "points": 0, 
         "maxPoints": 5, 
-        "imageUrl": "path_to_image1", 
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Increases attack power.", 
         "row": 1 
       }
@@ -78,7 +78,7 @@
         "name": "Aggression", 
         "points": 0, 
         "maxPoints": 5, 
-        "imageUrl": "path_to_image1", 
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Increases attack power.", 
         "row": 1 
       }
