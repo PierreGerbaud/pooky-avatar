@@ -28,7 +28,6 @@ h1 {
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 20px;
-  position: relative; /* For absolute positioning of the requirement */
 }
 
 .tree-title,
@@ -39,25 +38,20 @@ h1 {
 .row {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px; /* Adjusted for space for separator */
+  position: relative; /* Added for absolute positioning of requirement text */
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc; /* Separator between rows */
 }
 
-/* New separator line */
-.points-spent-separator {
-  border-top: 1px solid #ccc;
-  margin-top: 20px; /* Adjust the space above the separator */
-  margin-bottom: 20px; /* Adjust the space below the separator */
-}
-
-.row:first-child::before { /* Point requirement text */
+.row::before { /* Point requirement on the left side */
   content: attr(data-requirement);
   position: absolute;
-  left: 10px; /* Align to the left side of the talent-tree box */
+  left: -100px; /* Adjust as necessary */
   top: 50%;
   transform: translateY(-50%);
-  color: #f0b90b;
+  color: #f0b90b; /* Make the requirement readable */
   font-size: 0.8em;
-  z-index: 1;
+  white-space: nowrap;
 }
 
 .talent {
