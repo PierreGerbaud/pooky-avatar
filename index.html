@@ -89,15 +89,18 @@ h1 {
 }
 
 .row-requirement {
-  float: left; /* or right, depending on the desired side */
-  background-color: rgba(255, 255, 255, 0.1); /* subtle background */
-  color: #ccc; /* assuming a light grey text */
-  padding: 5px 10px;
-  margin: 0 10px 10px 0;
+  background-color: rgba(255, 255, 255, 0.05); /* very subtle background */
+  color: #ccc; /* light grey text */
+  padding: 2px 10px;
+  margin-bottom: 10px;
   font-size: 0.8em; /* smaller font size */
+  display: block; /* or inline-block */
+  width: auto; /* or specify a width */
   text-align: left;
-  border-radius: 5px;
+  float: left; /* align to the left side */
+  clear: both; /* ensures it doesn't overlap with floated elements */
 }
+
 
 .progress-bar-container {
   width: 100%;
