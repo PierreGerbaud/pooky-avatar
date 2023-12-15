@@ -1,4 +1,5 @@
 let talentTrees = {};
+const rowRequirements = { 1: 0, 2: 5, 3: 10, 4: 15 }; // Define this outside of functions
 
 // Function to fetch and load the talent tree configuration
 function loadTalentTrees() {
@@ -27,9 +28,8 @@ function calculateXP(level) {
 }
 
 function canAllocatePoints(talent, treeName) {
-  const rowRequirements = { 1: 0, 2: 5, 3: 10, 4: 15 }; // Add more rows as needed
   const pointsSpent = talentTrees[treeName].pointsSpent;
-  const requiredPoints = rowRequirements[talent.row] || 0;
+  const requiredPoints = rowRequirements[talent.row];
   return pointsSpent >= requiredPoints;
 }
 
@@ -167,6 +167,7 @@ function addTalent() {
 
 
 function renderTalentEditTable() {
+  const rowRequirements = { 1: 0, 2: 5, 3: 10, 4: 15 }; // Define row requirements here
   const table = document.getElementById('talentEditTable');
   let rows = `<tr>
                 <th>Tree Name</th>
