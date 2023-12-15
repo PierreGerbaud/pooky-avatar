@@ -216,5 +216,5 @@ function saveNewTalent(buttonElement) {
   row.remove(); // Remove the row after saving the new talent
 }
 
-renderTalentTrees();
-renderTalentEditTable();
+// Initial load of talent trees
+loadTalentTrees();
