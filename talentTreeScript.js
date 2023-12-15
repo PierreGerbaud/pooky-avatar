@@ -32,31 +32,40 @@ function renderTalentTrees() {
       <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
     `;
 
-    // Separator before talents
-    const playerLevelSeparator = document.createElement('div');
-    playerLevelSeparator.className = 'player-level-separator';
-    treeElement.appendChild(playerLevelSeparator);
+    // Player avatar if needed (if treeData.avatarUrl exists)
+    if(treeData.avatarUrl) {
+      const avatarElement = document.createElement('div');
+      avatarElement.className = 'player-avatar';
+      avatarElement.innerHTML = `<img src="${treeData.avatarUrl}" alt="Avatar Image" />`;
+      treeElement.appendChild(avatarElement);
+    }
 
     const rows = {};
     treeData.talents.forEach(talent => {
       if (!rows[talent.row]) {
         rows[talent.row] = document.createElement('div');
         rows[talent.row].className = 'row';
-        // Set the data-requirement attribute for the row if it has a requirement
-        if (treeData.rowRequirements && treeData.rowRequirements[talent.row]) {
+        if (treeData.rowRequirements[talent.row]) {
           rows[talent.row].setAttribute('data-requirement', `Requires ${treeData.rowRequirements[talent.row]} points in this tree`);
         }
       }
       rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
 
-    Object.values(rows).forEach(row => {
-      treeElement.appendChild(row); // Append each row to the tree
+    Object.values(rows).forEach((row, index) => {
+      // Only add separator if not the first row
+      if (index !== 0) {
+        const separator = document.createElement('div');
+        separator.className = 'row-separator';
+        treeElement.appendChild(separator);
+      }
+      treeElement.appendChild(row);
     });
 
-    talentTreesElement.appendChild(treeElement); // Append the tree to the main element
+    talentTreesElement.appendChild(treeElement);
   });
 }
+
 
 
 function createTalentElement(talent, treeName) {
