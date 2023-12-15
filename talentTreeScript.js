@@ -98,6 +98,10 @@ function createTalentElement(talent, treeName) {
   pointsDisplay.textContent = `Points: ${talent.points}/${talent.maxPoints}`;
   pointsDisplay.id = 'points' + treeName + talent.id; // This is used to update the text content later
   container.appendChild(pointsDisplay);
+
+  var pointsText = document.createTextNode(`Points: ${talent.points}/${talent.maxPoints}`);
+pointsDisplay.appendChild(pointsText);
+
   // ... Append other elements to container ...
 
   return container;
@@ -120,6 +124,19 @@ function renderTalentTrees() {
       rows[talent.row].className = 'row';
       rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
+
+    if (rowRequirements[row]) {
+      let requirementIcon = document.createElement('span');
+      requirementIcon.className = 'requirement-icon';
+      requirementIcon.textContent = '🔒'; // Or use an actual image
+      requirementDisplay.appendChild(requirementIcon);
+    
+      let progressBar = document.createElement('div');
+      progressBar.className = 'progress-bar';
+      let progress = (pointsSpent / rowRequirements[row]) * 100;
+      progressBar.style.width = progress + '%';
+      requirementDisplay.appendChild(progressBar);
+    }
 
     Object.keys(rows).forEach(row => {
       let requirementDisplay = document.createElement('div');

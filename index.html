@@ -5,101 +5,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pooky Avatar - Talent Simulator 1.0</title>
 <style>
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #282c34;
-    color: #abb2bf;
-    line-height: 1.6;
-    margin: 0;
-    padding: 20px;
-  }
-  h1 {
-    text-align: center;
-    color: #61afef;
-    font-size: 2.5rem;
-    margin-bottom: 0.5em;
-  }
-  .talent-trees {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .talent-tree {
-    border: 3px solid #61afef;
-    background-color: #21252b;
-    padding: 20px;
-    margin: 20px 0;
-    width: 320px;
-    text-align: center;
-    border-radius: 10px;
-  }
-  .tree-title {
-    color: #98c379;
-    margin: 10px 0;
-  }
-  .tree-description {
-    font-size: 0.9rem;
-    color: #abb2bf;
-    margin-bottom: 1em;
-  }
-  .row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  .talent {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 5px;
-  }
-  .talent img {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #abb2bf;
-    border-radius: 4px;
-    padding: 5px;
-    background-color: #3a3f4b;
-    margin-bottom: 5px;
-  }
-  .talent p {
-    margin: 5px 0;
-    color: #abb2bf;
-  }
-  .talent input[type="text"] {
-    background-color: #21252b;
-    border: 1px solid #abb2bf;
-    color: #abb2bf;
-    border-radius: 4px;
-    padding: 3px;
-    width: 90%;
-  }
-  img {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-  }
-  .talent img[title]:hover:after {
-  content: attr(title);
+body {
+  background-color: #2a2b2e;
+  color: #ccc;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #f0b90b;
+  margin-bottom: 20px;
+}
+
+.talent-trees {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.talent-tree {
+  background-color: #1a1b1e;
+  border: 2px solid #3e3f41;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.tree-title {
+  color: #f0b90b;
+  text-transform: uppercase;
+}
+
+.tree-description {
+  color: #ddd;
+  margin-bottom: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.talent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.talent img {
+  width: 64px;
+  height: 64px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.talent img:hover {
+  transform: scale(1.1);
+  border-color: #f0b90b;
+}
+
+.talent p {
+  color: #ccc;
+}
+
+/* Tooltip styling */
+.talent:hover::after {
+  content: attr(data-description);
   position: absolute;
   left: 100%;
   top: 0;
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 6px;
   white-space: nowrap;
-  z-index: 20;
-  /* Style your tooltip with background, padding, etc. */
-  }
-  .row-requirement {
+  z-index: 10;
+  font-size: 0.9em;
+}
+
+/* Row requirements and progress bar */
+.row-requirement {
   color: #fff;
-  background-color: #555; /* Example color */
+  background-color: #555;
   padding: 5px;
   border-radius: 5px;
   font-size: 0.8em;
   margin-top: 5px;
-  } 
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #414143;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.progress-bar {
+  height: 10px;
+  border-radius: 4px;
+  background-color: #f0b90b;
+}
+
 </style>
 </head>
 <body>
