@@ -78,7 +78,7 @@ function updateTreePoints(treeName) {
 function createTalentElement(talent, treeName) {
   var container = document.createElement('div');
   container.className = 'talent';
-  
+
   var talentImage = document.createElement('img');
   talentImage.src = talent.imageUrl;
   talentImage.alt = talent.name;
@@ -92,9 +92,12 @@ function createTalentElement(talent, treeName) {
     event.preventDefault();
     removePoint(event, talent.id, treeName);
   });
-
-  container.appendChild(talentImage);
-
+    container.appendChild(talentImage);
+  
+  var pointsDisplay = document.createElement('p');
+  pointsDisplay.textContent = `Points: ${talent.points}/${talent.maxPoints}`;
+  pointsDisplay.id = 'points' + treeName + talent.id; // This is used to update the text content later
+  container.appendChild(pointsDisplay);
   // ... Append other elements to container ...
 
   return container;
@@ -119,6 +122,13 @@ function renderTalentTrees() {
     });
 
     Object.keys(rows).forEach(row => {
+      let requirementDisplay = document.createElement('div');
+      if (rowRequirements[row]) {
+        requirementDisplay.textContent = `Requires ${rowRequirements[row]} points in this tree`;
+        requirementDisplay.className = 'row-requirement';
+        rows[row].appendChild(requirementDisplay);
+      }
+
       treeElement.appendChild(rows[row]);
     });
 
