@@ -1,53 +1,15 @@
-var talentTrees = {
-  ScoreFocus: {
-    title: 'Football only',
-    description: 'More impact of score prediction, less impact of boosters.',
-    pointsSpent: 0,
-    talents: [
-      { id: '1', 
-        name: 'Aggression', 
-        points: 0, 
-        maxPoints: 5, 
-        imageUrl: 'path_to_image1', 
-        description: 'Increases attack power.', 
-        row: 1 
-      },
-      // ... more talents for tree1
-    ],
-  },
-  
-  BoosterConsistency: {
-    title: 'Booster control',
-    description: 'Gain more control over your boosters.',
-    pointsSpent: 0,
-    talents: [
-      { id: '2', 
-        name: 'Aggression', 
-        points: 0, 
-        maxPoints: 5, 
-        imageUrl: 'path_to_image1', 
-        description: 'Increases attack power.', 
-        row: 1 
-      },        // ... more talents for tree2
-    ],
-  },
-
-  Explosiveness: {
-    title: 'Explosive effects',
-    description: 'Embrace more randomness and spikes!',
-    pointsSpent: 0,
-    talents: [
-      { id: '3', 
-        name: 'Aggression', 
-        points: 0, 
-        maxPoints: 5, 
-        imageUrl: 'path_to_image1', 
-        description: 'Increases attack power.', 
-        row: 1 
-      },        // ... more talents for tree3
-    ],
-  },
-
+fetch('talentTreeConfig.json')
+  .then(response => response.json())
+  .then(data => {
+    // Assuming 'talentTrees' is the variable that stores the talent tree data
+    talentTrees = data;
+    // Now you can render the talent trees and the talent editing table
+    renderTalentTrees();
+    renderTalentEditTable();
+  })
+  .catch(error => {
+    console.error('Error loading the talent tree configuration:', error);
+  });
 
   // Add more trees (tree2, tree3, etc.) as needed 
 };
