@@ -27,7 +27,7 @@ function calculateXP(level) {
 }
 
 function canAllocatePoints(talent, treeName) {
-  const rowRequirements = { 2: 5, 3: 10 }; // Row requirements for talent points
+  const rowRequirements = { 1: 0, 2: 5, 3: 10, 4: 15 }; // Add more rows as needed
   const pointsSpent = talentTrees[treeName].pointsSpent;
   const requiredPoints = rowRequirements[talent.row] || 0;
   return pointsSpent >= requiredPoints;
