@@ -43,11 +43,11 @@ h1 {
   margin-bottom: 10px;
 }
 
-.row::before {
+.row::before { /* Rotated "requires points" text */
   content: attr(data-requirement);
   position: absolute;
   top: 50%;
-  left: -30px;
+  left: -30px; /* Adjust as necessary */
   transform: translateY(-50%) rotate(180deg);
   transform-origin: left;
   writing-mode: vertical-rl;
@@ -55,11 +55,6 @@ h1 {
   color: #f0b90b;
   font-size: 0.8em;
   white-space: nowrap;
-}
-
-.row-separator {
-  border-top: 1px solid #ccc;
-  margin: 10px 0;
 }
 
 .talent {
@@ -88,6 +83,7 @@ h1 {
   color: #ccc;
 }
 
+/* Tooltip styling */
 .talent:hover::after {
   content: attr(data-description);
   position: absolute;
@@ -95,6 +91,18 @@ h1 {
   padding: 5px;
   border-radius: 6px;
   z-index: 10;
+}
+
+/* Separator line and padding */
+.points-spent-separator,
+.player-level-separator {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+/* This class is for the div that separates the player level and the first talent row */
+.player-level-separator {
+  margin-top: 20px; /* Space above the separator */
 }
 
 
