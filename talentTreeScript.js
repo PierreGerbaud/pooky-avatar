@@ -27,7 +27,7 @@ function renderTalentTrees() {
     treeElement.innerHTML = `<h2 class="tree-title">${treeData.title}</h2>
                              <p class="tree-description">${treeData.description}</p>
                              <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
-
+                             <div class="someClassName">Avatar: <img src={treeData.imageUrl} alt="Avatar Image" /> </div>`;
     const rows = {};
     treeData.talents.forEach(talent => {
       if (!rows[talent.row]) {
@@ -42,7 +42,8 @@ function renderTalentTrees() {
       const requirement = document.createElement('div');
       requirement.className = 'row-requirement';
       requirement.textContent = `Requires ${rowRequirements[rowNumber]} points in this tree`;
-      row.insertBefore(requirement, row.firstChild);      treeElement.append(row);
+      row.insertBefore(requirement, row.firstChild); 
+      treeElement.append(row);
       // This adds the requirement text above the row
     });
 
@@ -124,4 +125,3 @@ function updateTreePointsSpent(treeName) {
 document.addEventListener('DOMContentLoaded', () => {
   loadTalentTrees();
 });
-
