@@ -83,6 +83,15 @@
         -ms-user-select: none;
             user-select: none;
   }
+  .talent img[title]:hover:after {
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+  top: 0;
+  white-space: nowrap;
+  z-index: 20;
+  /* Style your tooltip with background, padding, etc. */
+}
 </style>
 </head>
 <body>

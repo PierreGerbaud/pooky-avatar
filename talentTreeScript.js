@@ -26,6 +26,13 @@ function calculateXP(level) {
   return xp;
 }
 
+function canAllocatePoints(talent, treeName) {
+  const rowRequirements = { 2: 5, 3: 10 }; // Row requirements for talent points
+  const pointsSpent = talentTrees[treeName].pointsSpent;
+  const requiredPoints = rowRequirements[talent.row] || 0;
+  return pointsSpent >= requiredPoints;
+}
+
 function updatePlayerInfo() {
   const level = calculatePlayerLevel();
   const xp = calculateXP(level);
@@ -35,7 +42,7 @@ function updatePlayerInfo() {
 
 function allocatePoint(talentId, treeName) {
   var talent = talentTrees[treeName].talents.find(t => t.id === talentId);
-  if (talent && talent.points < talent.maxPoints) {
+  if (talent.points < talent.maxPoints && canAllocatePoints(talent, treeName)) {
     talent.points++;
     talentTrees[treeName].pointsSpent++;
     updatePlayerInfo();
@@ -71,14 +78,25 @@ function updateTreePoints(treeName) {
 function createTalentElement(talent, treeName) {
   var container = document.createElement('div');
   container.className = 'talent';
-  container.innerHTML = `
-    <img src="${talent.imageUrl}" alt="${talent.name}" 
-         onclick="allocatePoint('${talent.id}', '${treeName}')" 
-         oncontextmenu="removePoint(event, '${talent.id}', '${treeName}')">
-    <p>${talent.name}</p>
-    <p>Points: <span id="points${treeName}${talent.id}">${talent.points}</span>/${talent.maxPoints}</p>
-    <p><input type="text" value="${talent.description}" onchange="updateDescription('${talent.id}', '${treeName}', this.value)"></p>
-  `;
+  
+  var talentImage = document.createElement('img');
+  talentImage.src = talent.imageUrl;
+  talentImage.alt = talent.name;
+  talentImage.title = talent.description; // Tooltip
+
+  // Attach event listeners directly in JS, not in HTML
+  talentImage.addEventListener('click', function() {
+    allocatePoint(talent.id, treeName);
+  });
+  talentImage.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+    removePoint(event, talent.id, treeName);
+  });
+
+  container.appendChild(talentImage);
+
+  // ... Append other elements to container ...
+
   return container;
 }
 
