@@ -37,8 +37,12 @@ function renderTalentTrees() {
       rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
 
-    Object.keys(rows).forEach(row => {
-      treeElement.appendChild(rows[row]);
+    Object.keys(rows).forEach(rowNumber => {
+      const row = rows[rowNumber];
+      const requirement = document.createElement('div');
+      requirement.className = 'row-requirement';
+      requirement.textContent = `Requires ${rowRequirements[rowNumber]} points in this tree`;
+      row.insertBefore(requirement, row.firstChild); // This adds the requirement text above the row
     });
 
     talentTreesElement.appendChild(treeElement);
@@ -68,12 +72,6 @@ function createTalentElement(talent, treeName) {
   points.textContent = `Points: ${talent.points}/${talent.maxPoints}`;
   points.id = `points${treeName}${talent.id}`;
   container.appendChild(points);
-
-  // Points display
-  var pointsDisplay = document.createElement('p');
-  pointsDisplay.id = 'points' + treeName + talent.id;
-  pointsDisplay.textContent = `Points: ${talent.points}/${talent.maxPoints}`;
-  container.appendChild(pointsDisplay);
 
   return container;
   }
