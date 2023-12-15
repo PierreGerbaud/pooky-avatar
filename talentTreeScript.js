@@ -39,10 +39,7 @@ function renderTalentTrees() {
 
     Object.keys(rows).forEach(rowNumber => {
       const row = rows[rowNumber];
-      const requirement = document.createElement('div');
-      requirement.className = 'row-requirement';
-      requirement.textContent = `Requires ${rowRequirements[rowNumber]} points in this tree`;
-      row.insertBefore(requirement, row.firstChild); 
+      rows[rowNumber].setAttribute('data-requirement', `Requires ${rowRequirements[rowNumber]} points in this tree`);
       treeElement.append(row);
       // This adds the requirement text above the row
     });
