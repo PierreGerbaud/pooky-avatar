@@ -27,7 +27,7 @@ function renderTalentTrees() {
     treeElement.innerHTML = `<h2 class="tree-title">${treeData.title}</h2>
                              <p class="tree-description">${treeData.description}</p>
                              <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
-                             <div class="someClassName">Avatar: <img src={treeData.imageUrl} alt="Avatar Image" /> </div>`;
+
     const rows = {};
     treeData.talents.forEach(talent => {
       if (!rows[talent.row]) {
