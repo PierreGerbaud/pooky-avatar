@@ -1,4 +1,4 @@
-var talentTrees = {
+{
   ScoreFocus: {
     title: 'Football only',
     description: 'More impact of score prediction, less impact of boosters.',
