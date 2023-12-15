@@ -11,12 +11,10 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 20px;
-  text-align: center;
 }
 
 h1 {
   color: #f0b90b;
-  margin-bottom: 20px;
 }
 
 .talent-trees {
@@ -30,43 +28,53 @@ h1 {
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 20px;
-  display: inline-block;
 }
 
-.tree-title {
-  color: #f0b90b;
-  text-transform: uppercase;
-}
-
+.tree-title,
 .tree-description {
-  color: #ddd;
-  margin-bottom: 15px;
+  color: #f0b90b;
 }
 
 .row {
   display: flex;
   justify-content: center;
+  position: relative; /* Added for absolute positioning of requirement text */
   margin-bottom: 10px;
+  border-bottom: 1px solid #ccc; /* Separator between rows */
+}
+
+.row::before { /* Point requirement on the left side */
+  content: attr(data-requirement);
+  position: absolute;
+  left: -100px; /* Adjust as necessary */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f0b90b; /* Make the requirement readable */
+  font-size: 0.8em;
+  white-space: nowrap;
 }
 
 .talent {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  padding: 10px;
+  transition: background 0.3s ease;
 }
 
 .talent img {
   width: 64px;
   height: 64px;
   transition: transform 0.2s ease-in-out;
-  cursor: pointer;
 }
 
-.talent img:hover {
+.talent img:hover,
+.talent:hover {
   transform: scale(1.1);
-  border-color: #f0b90b;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .talent p {
@@ -77,65 +85,11 @@ h1 {
 .talent:hover::after {
   content: attr(data-description);
   position: absolute;
-  left: 100%;
-  top: 0;
   background-color: #333;
-  color: white;
   padding: 5px;
   border-radius: 6px;
-  white-space: nowrap;
   z-index: 10;
-  font-size: 0.9em;
 }
-
-.row-requirement {
-  background-color: rgba(255, 255, 255, 0.05); /* very subtle background */
-  color: #ccc; /* light grey text */
-  padding: 2px 10px;
-  margin-bottom: 10px;
-  font-size: 0.8em; /* smaller font size */
-  display: block; /* or inline-block */
-  width: auto; /* or specify a width */
-  text-align: left;
-  float: left; /* align to the left side */
-  clear: both; /* ensures it doesn't overlap with floated elements */
-}
-
-
-.progress-bar-container {
-  width: 100%;
-  background-color: #414143;
-  border-radius: 4px;
-  margin-top: 5px;
-}
-
-.progress-bar {
-  height: 10px;
-  border-radius: 4px;
-  background-color: #f0b90b;
-}
-.talent-tree {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid #333;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.talent {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 5px;
-  padding: 10px;
-  margin: 5px;
-  text-align: center;
-  transition: background 0.3s ease;
-}
-
-.talent:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
 
 </style>
 </head>
