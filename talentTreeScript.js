@@ -53,28 +53,26 @@ function renderTalentTrees() {
 function createTalentElement(talent, treeName) {
   const container = document.createElement('div');
   container.className = 'talent';
+  
   const image = document.createElement('img');
   image.src = talent.imageUrl;
   image.alt = talent.name;
-  image.addEventListener('click', () => allocatePoint(talent, treeName));
+  image.title = talent.description; // Tooltip for the description
+  image.addEventListener('click', () => allocatePoint(talent.id, treeName));
   container.appendChild(image);
-
-  var talentImage = document.createElement('img');
-  talentImage.src = talent.imageUrl;
-  talentImage.alt = talent.name;
-  talentImage.title = talent.description; // Tooltip
 
   const name = document.createElement('p');
   name.textContent = talent.name;
   container.appendChild(name);
 
   const points = document.createElement('p');
-  points.textContent = `Points: ${talent.points}/${talent.maxPoints}`;
   points.id = `points${treeName}${talent.id}`;
+  points.textContent = `Points: ${talent.points}/${talent.maxPoints}`;
   container.appendChild(points);
 
   return container;
-  }
+}
+
 
 
 // Function to handle point allocation
