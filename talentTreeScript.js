@@ -18,53 +18,41 @@ function loadTalentTrees() {
 // Function to render all talent trees
 function renderTalentTrees() {
   const talentTreesElement = document.getElementById('talentTrees');
-  talentTreesElement.innerHTML = ''; // Clear existing trees
+  talentTreesElement.innerHTML = '';
 
   Object.keys(talentTrees).forEach(treeName => {
     const treeData = talentTrees[treeName];
     const treeElement = document.createElement('div');
     treeElement.className = 'talent-tree';
+    treeElement.innerHTML = `<h2 class="tree-title">${treeData.title}</h2>
+                             <p class="tree-description">${treeData.description}</p>
+                             <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>`;
 
-    // Header elements
-    treeElement.innerHTML = `
-      <h2 class="tree-title">${treeData.title}</h2>
-      <p class="tree-description">${treeData.description}</p>
-      <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
-    `;
+    const playerLevelSeparator = document.createElement('div');
+    playerLevelSeparator.className = 'player-level-separator';
+    treeElement.appendChild(playerLevelSeparator);
 
-    // Player avatar if needed (if treeData.avatarUrl exists)
-    if(treeData.avatarUrl) {
-      const avatarElement = document.createElement('div');
-      avatarElement.className = 'player-avatar';
-      avatarElement.innerHTML = `<img src="${treeData.avatarUrl}" alt="Avatar Image" />`;
-      treeElement.appendChild(avatarElement);
-    }
+    treeData.talents.sort((a, b) => a.row - b.row).forEach(talent => {
+      let row = rows[talent.row];
+      if (!row) {
+        row = document.createElement('div');
+        row.className = 'row';
+        rows[talent.row] = row;
+        treeElement.appendChild(row);
 
-    const rows = {};
-    treeData.talents.forEach(talent => {
-      if (!rows[talent.row]) {
-        rows[talent.row] = document.createElement('div');
-        rows[talent.row].className = 'row';
-        if (treeData.rowRequirements[talent.row]) {
-          rows[talent.row].setAttribute('data-requirement', `Requires ${treeData.rowRequirements[talent.row]} points in this tree`);
+        if (talent.row > 1) {
+          const separator = document.createElement('div');
+          separator.className = 'row-separator';
+          row.before(separator);
         }
       }
-      rows[talent.row].appendChild(createTalentElement(talent, treeName));
-    });
-
-    Object.values(rows).forEach((row, index) => {
-      // Only add separator if not the first row
-      if (index !== 0) {
-        const separator = document.createElement('div');
-        separator.className = 'row-separator';
-        treeElement.appendChild(separator);
-      }
-      treeElement.appendChild(row);
+      row.appendChild(createTalentElement(talent, treeName));
     });
 
     talentTreesElement.appendChild(treeElement);
   });
 }
+
 
 
 
