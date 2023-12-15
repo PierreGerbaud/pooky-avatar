@@ -24,32 +24,40 @@ function renderTalentTrees() {
     const treeData = talentTrees[treeName];
     const treeElement = document.createElement('div');
     treeElement.className = 'talent-tree';
-    treeElement.innerHTML = `<h2 class="tree-title">${treeData.title}</h2>
-                             <p class="tree-description">${treeData.description}</p>
-                             <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
-                             <div class="someClassName">Avatar: <img src={treeData.imageUrl} alt="Avatar Image" /> </div>`;
+
+    // Header elements
+    treeElement.innerHTML = `
+      <h2 class="tree-title">${treeData.title}</h2>
+      <p class="tree-description">${treeData.description}</p>
+      <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
+    `;
+
+    // Separator before talents
+    const playerLevelSeparator = document.createElement('div');
+    playerLevelSeparator.className = 'player-level-separator';
+    treeElement.appendChild(playerLevelSeparator);
+
     const rows = {};
     treeData.talents.forEach(talent => {
       if (!rows[talent.row]) {
         rows[talent.row] = document.createElement('div');
         rows[talent.row].className = 'row';
+        // Set the data-requirement attribute for the row if it has a requirement
+        if (treeData.rowRequirements && treeData.rowRequirements[talent.row]) {
+          rows[talent.row].setAttribute('data-requirement', `Requires ${treeData.rowRequirements[talent.row]} points in this tree`);
+        }
       }
       rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
 
-    Object.keys(rows).forEach(rowNumber => {
-      const row = rows[rowNumber];
-      const requirement = document.createElement('div');
-      requirement.className = 'row-requirement';
-      requirement.textContent = `Requires ${rowRequirements[rowNumber]} points in this tree`;
-      row.insertBefore(requirement, row.firstChild); 
-      treeElement.append(row);
-      // This adds the requirement text above the row
+    Object.values(rows).forEach(row => {
+      treeElement.appendChild(row); // Append each row to the tree
     });
 
-    talentTreesElement.appendChild(treeElement);
+    talentTreesElement.appendChild(treeElement); // Append the tree to the main element
   });
 }
+
 
 function createTalentElement(talent, treeName) {
   const container = document.createElement('div');
