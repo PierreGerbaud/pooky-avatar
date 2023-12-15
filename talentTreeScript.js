@@ -42,7 +42,9 @@ function renderTalentTrees() {
       const requirement = document.createElement('div');
       requirement.className = 'row-requirement';
       requirement.textContent = `Requires ${rowRequirements[rowNumber]} points in this tree`;
-      row.insertBefore(requirement, row.firstChild); // This adds the requirement text above the row
+      row.insertBefore(requirement, row.firstChild); 
+      treeElement.append(row);
+      // This adds the requirement text above the row
     });
 
     talentTreesElement.appendChild(treeElement);
