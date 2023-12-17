@@ -98,16 +98,6 @@ function removePoint(talentId, treeName) {
   }
 }
 
-function calculateXPForLevel(level) {
-    if (level === 0) return 0;
-    let xp = 10;
-    for (let i = 1; i < level; i++) {
-        xp *= 1.1;
-        xp = Math.round(xp);
-    }
-    return xp;
-}
-
 // Function to handle point allocation
 function allocatePoint(talentId, treeName) {
   let talent = talentTrees[treeName].talents.find(t => t.id === talentId);
