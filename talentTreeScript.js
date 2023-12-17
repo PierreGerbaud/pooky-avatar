@@ -17,49 +17,47 @@ function loadTalentTrees() {
 
 // Function to render all talent trees
 function renderTalentTrees() {
-    const talentTreesElement = document.getElementById('talentTrees');
-    talentTreesElement.innerHTML = ''; // Clear existing trees
+  const talentTreesElement = document.getElementById('talentTrees');
+  talentTreesElement.innerHTML = ''; // Clear existing trees
 
-    Object.keys(talentTrees).forEach(treeName => {
-        const treeData = talentTrees[treeName];
-        const treeElement = document.createElement('div');
-        treeElement.className = 'talent-tree';
+  Object.keys(talentTrees).forEach(treeName => {
+    const treeData = talentTrees[treeName];
+    const treeElement = document.createElement('div');
+    treeElement.className = 'talent-tree';
 
-        // Header elements
-        treeElement.innerHTML = `
-            <h2 class="tree-title">${treeData.title}</h2>
-            <p class="tree-description">${treeData.description}</p>
-            <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
-        `;
+    // Header elements
+    treeElement.innerHTML = `
+      <h2 class="tree-title">${treeData.title}</h2>
+      <p class="tree-description">${treeData.description}</p>
+      <div class="points-spent">Points Spent: <span id="pointsSpent${treeName}">${treeData.pointsSpent}</span></div>
+    `;
 
-        // Separator before talents
-        const playerLevelSeparator = document.createElement('div');
-        playerLevelSeparator.className = 'player-level-separator';
-        treeElement.appendChild(playerLevelSeparator);
+    // Separator before talents
+    const playerLevelSeparator = document.createElement('div');
+    playerLevelSeparator.className = 'player-level-separator';
+    treeElement.appendChild(playerLevelSeparator);
 
-        const rows = {};
-        treeData.talents.forEach(talent => {
-            if (!rows[talent.row]) {
-                rows[talent.row] = document.createElement('div');
-                rows[talent.row].className = 'row';
-  
-                // Create the points required label
-                const pointsRequiredLabel = document.createElement('div');
-                pointsRequiredLabel.className = 'points-required';
-                pointsRequiredLabel.textContent = `Requires ${talent.pointsRequired} points in this tree`;
-                rows[talent.row].appendChild(pointsRequiredLabel);
-            }
-            rows[talent.row].appendChild(createTalentElement(talent, treeName));
-        });
-
-        Object.values(rows).forEach(row => {
-            treeElement.appendChild(row); // Append each row to the tree
-        });
-
-        talentTreesElement.appendChild(treeElement); // Append the tree to the main element
+    const rows = {};
+    treeData.talents.forEach(talent => {
+      if (!rows[talent.row]) {
+        rows[talent.row] = document.createElement('div');
+        rows[talent.row].className = 'row';
+        // Set the data-requirement attribute for the row if it has a requirement
+        if (treeData.rowRequirements && treeData.rowRequirements[talent.row]) {
+          rows[talent.row].setAttribute('data-requirement', `Requires ${treeData.rowRequirements[talent.row]} points in this tree`);
+        }
+      }
+      rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
-    updatePlayerLevel();
+
+    Object.values(rows).forEach(row => {
+      treeElement.appendChild(row); // Append each row to the tree
+    });
+
+    talentTreesElement.appendChild(treeElement); // Append the tree to the main element
+  });
 }
+
 
 function createTalentElement(talent, treeName) {
   const container = document.createElement('div');
@@ -121,15 +119,6 @@ function allocatePoint(talentId, treeName) {
     updateTreePointsSpent(treeName);
   }
 }
-
-function updatePlayerLevel() {
-  const totalPointsSpent = Object.values(talentTrees).reduce((total, tree) => total + tree.pointsSpent, 0);
-  const playerLevel = calculateLevelFromPoints(totalPointsSpent);
-  document.getElementById('playerLevel').textContent = playerLevel;
-}
-
-function calculateLevelFromPoints(points) {
-  return points; 
 
 
 // Function to check if points can be allocated based on row requirements
