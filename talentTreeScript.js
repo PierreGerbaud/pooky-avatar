@@ -46,26 +46,49 @@ function renderTalentTrees() {
       rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
 
-    Object.keys(rows).forEach(rowKey => {
-      const pointsRequired = rowRequirements[rowKey];
-      const pointsRequiredLabel = document.createElement('div');
-      pointsRequiredLabel.className = 'points-required';
-      pointsRequiredLabel.textContent = `Requires ${pointsRequired} points in this tree`;
+Object.keys(rows).forEach(rowKey => {
+  const pointsRequired = rowRequirements[rowKey];
+  const pointsRequiredLabel = document.createElement('div');
+  pointsRequiredLabel.className = 'points-required';
+  pointsRequiredLabel.textContent = `Requires ${pointsRequired} points in this tree`;
+  pointsRequiredLabel.setAttribute('data-row', rowKey); // Add this line
+  pointsRequiredLabel.setAttribute('data-tree', treeName); // Add this line
 
-      // Check if the points requirement for the row is met and add appropriate class
-      if (talentTrees[treeName].pointsSpent >= pointsRequired) {
-        pointsRequiredLabel.classList.add('requirement-met');
-      } else {
-        pointsRequiredLabel.classList.add('requirement-not-met');
-      }
+  // Check if the points requirement for the row is met and add appropriate class
+  updateRequirementClass(pointsRequiredLabel, treeName, pointsRequired);
 
-      rows[rowKey].prepend(pointsRequiredLabel);
-      treeElement.appendChild(rows[rowKey]); // Append each row to the tree
+  rows[rowKey].prepend(pointsRequiredLabel);
+  treeElement.appendChild(rows[rowKey]); // Append each row to the tree
     });
-
-    talentTreesElement.appendChild(treeElement); // Append the tree to the main element
+  talentTreesElement.appendChild(treeElement); // Append the tree to the main element
   });
 }
+
+function updateRequirementClass(label, treeName, requiredPoints) {
+  if (talentTrees[treeName].pointsSpent >= requiredPoints) {
+    label.classList.add('requirement-met');
+    label.classList.remove('requirement-not-met');
+  } else {
+    label.classList.add('requirement-not-met');
+    label.classList.remove('requirement-met');
+  }
+}
+
+function updateRequirementLabels(treeName) {
+  Object.keys(rowRequirements).forEach(rowKey => {
+    const pointsRequired = rowRequirements[rowKey];
+    const pointsRequiredLabel = document.querySelector(`.points-required[data-row='${rowKey}'][data-tree='${treeName}']`);
+    
+    if (talentTrees[treeName].pointsSpent >= pointsRequired) {
+      pointsRequiredLabel.classList.remove('requirement-not-met');
+      pointsRequiredLabel.classList.add('requirement-met');
+    } else {
+      pointsRequiredLabel.classList.remove('requirement-met');
+      pointsRequiredLabel.classList.add('requirement-not-met');
+    }
+  });
+}
+
 
 function createTalentElement(talent, treeName) {
   const container = document.createElement('div');
@@ -102,6 +125,7 @@ function removePoint(talentId, treeName) {
     talentTrees[treeName].pointsSpent--;
     updatePointsDisplay(talent, treeName);
     updateTreePointsSpent(treeName);
+    updateRequirementLabels(treeName);
   }
 }
 
@@ -113,6 +137,7 @@ function allocatePoint(talentId, treeName) {
     talentTrees[treeName].pointsSpent++;
     updatePointsDisplay(talent, treeName);
     updateTreePointsSpent(treeName);
+    updateRequirementLabels(treeName);
   }
 }
 
