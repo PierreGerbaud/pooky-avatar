@@ -39,14 +39,15 @@ function renderTalentTrees() {
 
     const rows = {};
     treeData.talents.forEach(talent => {
-      if (!rows[talent.row]) {
-        rows[talent.row] = document.createElement('div');
-        rows[talent.row].className = 'row';
-        // Set the data-requirement attribute for the row if it has a requirement
-        if (treeData.rowRequirements && treeData.rowRequirements[talent.row]) {
-          rows[talent.row].setAttribute('data-requirement', `Requires ${treeData.rowRequirements[talent.row]} points in this tree`);
-        }
-      }
+    if (!rows[talent.row]) {
+      rows[talent.row] = document.createElement('div');
+      rows[talent.row].className = 'row';
+
+      // Create the points required label
+      const pointsRequiredLabel = document.createElement('div');
+      pointsRequiredLabel.className = 'points-required';
+      pointsRequiredLabel.textContent = `Requires ${rowRequirements[talent.row]} points in this tree`;
+      rows[talent.row].appendChild(pointsRequiredLabel); // Append the label to the row
       rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
 
