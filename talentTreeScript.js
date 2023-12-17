@@ -84,7 +84,6 @@ function createTalentElement(talent, treeName) {
   points.id = `points${treeName}${talent.id}`;
   points.textContent = `Points: ${talent.points}/${talent.maxPoints}`;
   container.appendChild(points);
-
   return container;
 }
 
@@ -109,7 +108,6 @@ function calculateXPForLevel(level) {
     return xp;
 }
 
-
 // Function to handle point allocation
 function allocatePoint(talentId, treeName) {
   let talent = talentTrees[treeName].talents.find(t => t.id === talentId);
@@ -120,7 +118,6 @@ function allocatePoint(talentId, treeName) {
     updateTreePointsSpent(treeName);
   }
 }
-
 
 // Function to check if points can be allocated based on row requirements
 function canAllocatePoints(talent, treeName) {
@@ -142,9 +139,13 @@ function updateTreePointsSpent(treeName) {
 }
 
 function updatePlayerLevel() {
-  const totalPointsSpent = Object.values(talentTrees).reduce((total, tree) => total + tree.pointsSpent, 0);
-  const playerLevelElement = document.getElementById('playerLevel');
-  playerLevelElement.textContent = totalPointsSpent;
+    const totalPointsSpent = Object.values(talentTrees).reduce((total, tree) => total + tree.pointsSpent, 0);
+    const playerLevelElement = document.getElementById('playerLevel');
+    playerLevelElement.textContent = totalPointsSpent;
+
+    // Update the XP display
+    const playerXPElement = document.getElementById('playerXP');
+    playerXPElement.textContent = calculateXPForLevel(totalPointsSpent);
 }
 
 // Call this function to initialize the talent trees on page load
