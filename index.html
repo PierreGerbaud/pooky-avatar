@@ -18,23 +18,31 @@ h1 {
   color: #f0b90b;
 }
 
-.talent-trees {
-  max-width: 800px;
-  margin: 0 auto;
+.points-required {
+  color: #fff; /* or any color that suits your design */
+  background-color: #333; /* or any background that suits your design */
+  padding: 5px 10px;
+  margin-right: 10px; /* Adjust the spacing to align with your design */
+  font-size: 0.8em; /* Adjust size as needed */
+  border-radius: 5px; /* Optional, for rounded corners */
+  position: absolute; /* Position it relative to its parent .row */
+  left: -150px; /* Adjust this value so it displays outside of the tree */
+  top: 50%;
+  transform: translateY(-50%); /* This will vertically center it */
 }
 
-.talent-tree {
-  background-color: #1a1b1e;
-  border: 2px solid #3e3f41;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
+/* Separator line and padding */
+.points-spent-separator,
+.player-level-separator {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
 }
 
-.tree-title,
-.tree-description {
-  color: #f0b90b;
+/* This class is for the div that separates the player level and the first talent row */
+.player-level-separator {
+  margin-top: 20px; /* Space above the separator */
 }
+
 
 .row {
   display: flex;
@@ -68,6 +76,24 @@ h1 {
   border-radius: 5px;
   padding: 10px;
   transition: background 0.3s ease;
+}
+
+.talent-trees {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.talent-tree {
+  background-color: #1a1b1e;
+  border: 2px solid #3e3f41;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.tree-title,
+.tree-description {
+  color: #f0b90b;
 }
 
 .talent:hover::after {
@@ -113,18 +139,6 @@ h1 {
   padding: 5px;
   border-radius: 6px;
   z-index: 10;
-}
-
-/* Separator line and padding */
-.points-spent-separator,
-.player-level-separator {
-  border-top: 1px solid #ccc;
-  padding: 10px 0;
-}
-
-/* This class is for the div that separates the player level and the first talent row */
-.player-level-separator {
-  margin-top: 20px; /* Space above the separator */
 }
 
 
