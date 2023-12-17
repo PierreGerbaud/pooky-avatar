@@ -43,18 +43,22 @@ h1 {
   margin-bottom: 10px;
 }
 
-.row::before { /* Rotated "requires points" text */
-  content: attr(data-requirement);
+.row {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.row:not(:last-child)::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: -30px; /* Adjust as necessary */
-  transform: translateY(-50%) rotate(180deg);
-  transform-origin: left;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  color: #f0b90b;
-  font-size: 0.8em;
-  white-space: nowrap;
+  bottom: -5px; /* Adjust as needed, half of the margin-bottom */
+  left: 0;
+  right: 0;
+  height: 1px; /* Height of the separator bar */
+  background-color: #ccc; /* Color of the separator bar */
+  z-index: 1;
 }
 
 .talent {
