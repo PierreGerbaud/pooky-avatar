@@ -148,6 +148,14 @@ function updatePlayerLevel() {
     playerXPElement.textContent = calculateXPForLevel(totalPointsSpent);
 }
 
+function calculateXPForLevel(level) {
+    let xp = 0;
+    for (let i = 1; i <= level; i++) {
+        xp += 10 * Math.pow(1.1, i - 1); // Incremental XP based on level
+    }
+    return Math.floor(xp);
+}
+
 // Call this function to initialize the talent trees on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadTalentTrees();
