@@ -56,14 +56,38 @@ h1 {
 }
 
 .talent {
+  cursor: help; /* Shows a help cursor on hover */
+  width: 100px; /* Set a fixed width */
+  height: 140px; /* Set a fixed height */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Centers content vertically */
   margin: 0 10px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 5px;
   padding: 10px;
   transition: background 0.3s ease;
+}
+
+.talent:hover::after {
+  content: attr(data-description) " (Hover for details)"; /* Adds instruction to the tooltip */
+  position: absolute;
+  background-color: #333;
+  color: #fff; /* Ensures text is visible on the dark background */
+  padding: 5px;
+  border-radius: 6px;
+  z-index: 10;
+  top: 100%; /* Positions the tooltip below the talent box */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the tooltip */
+  white-space: nowrap; /* Keeps the tooltip on one line */
+  text-align: center; /* Centers the text within the tooltip */
+}
+  
+.talent p.talent-name { /* Assuming 'talent-name' is a class applied to the paragraph */
+  font-weight: bold; /* Makes the text bold */
+  color: #ccc; /* Keeps the existing color */
 }
 
 .talent img {
