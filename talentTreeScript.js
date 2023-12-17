@@ -123,6 +123,15 @@ function allocatePoint(talentId, treeName) {
   }
 }
 
+function updatePlayerLevel() {
+  const totalPointsSpent = Object.values(talentTrees).reduce((total, tree) => total + tree.pointsSpent, 0);
+  const playerLevel = calculateLevelFromPoints(totalPointsSpent);
+  document.getElementById('playerLevel').textContent = playerLevel;
+}
+
+function calculateLevelFromPoints(points) {
+  return points; 
+
 
 // Function to check if points can be allocated based on row requirements
 function canAllocatePoints(talent, treeName) {
