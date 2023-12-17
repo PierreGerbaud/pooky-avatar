@@ -47,12 +47,19 @@ function renderTalentTrees() {
     });
 
     Object.keys(rows).forEach(rowKey => {
-      // Create and prepend the points required label to each row
+      const pointsRequired = rowRequirements[rowKey];
       const pointsRequiredLabel = document.createElement('div');
       pointsRequiredLabel.className = 'points-required';
-      pointsRequiredLabel.textContent = `Requires ${rowRequirements[rowKey]} points in this tree`;
-      rows[rowKey].prepend(pointsRequiredLabel);
+      pointsRequiredLabel.textContent = `Requires ${pointsRequired} points in this tree`;
 
+      // Check if the points requirement for the row is met and add appropriate class
+      if (talentTrees[treeName].pointsSpent >= pointsRequired) {
+        pointsRequiredLabel.classList.add('requirement-met');
+      } else {
+        pointsRequiredLabel.classList.add('requirement-not-met');
+      }
+
+      rows[rowKey].prepend(pointsRequiredLabel);
       treeElement.appendChild(rows[rowKey]); // Append each row to the tree
     });
 
