@@ -40,22 +40,16 @@ h1 {
   display: flex;
   justify-content: center;
   position: relative;
-  margin-bottom: 10px;
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 20px; /* Increased to account for padding */
+  padding: 0 10px; /* Padding on the left and right */
 }
 
 .row:not(:last-child)::after {
   content: '';
   position: absolute;
-  bottom: -5px; /* Adjust as needed, half of the margin-bottom */
-  left: 0;
-  right: 0;
+  bottom: -10px; /* Adjusted to half of the new margin-bottom */
+  left: 10px; /* Padding from the left side */
+  right: 10px; /* Padding from the right side */
   height: 1px; /* Height of the separator bar */
   background-color: #ccc; /* Color of the separator bar */
   z-index: 1;
