@@ -42,22 +42,23 @@ function renderTalentTrees() {
       if (!rows[talent.row]) {
         rows[talent.row] = document.createElement('div');
         rows[talent.row].className = 'row';
-        // Set the data-requirement attribute for the row if it has a requirement
-        if (treeData.rowRequirements && treeData.rowRequirements[talent.row]) {
-          rows[talent.row].setAttribute('data-requirement', `Requires ${treeData.rowRequirements[talent.row]} points in this tree`);
-        }
       }
       rows[talent.row].appendChild(createTalentElement(talent, treeName));
     });
 
-    Object.values(rows).forEach(row => {
-      treeElement.appendChild(row); // Append each row to the tree
+    Object.keys(rows).forEach(rowKey => {
+      // Create and prepend the points required label to each row
+      const pointsRequiredLabel = document.createElement('div');
+      pointsRequiredLabel.className = 'points-required';
+      pointsRequiredLabel.textContent = `Requires ${rowRequirements[rowKey]} points in this tree`;
+      rows[rowKey].prepend(pointsRequiredLabel);
+
+      treeElement.appendChild(rows[rowKey]); // Append each row to the tree
     });
 
     talentTreesElement.appendChild(treeElement); // Append the tree to the main element
   });
 }
-
 
 function createTalentElement(talent, treeName) {
   const container = document.createElement('div');
