@@ -75,6 +75,7 @@ function createTalentElement(talent, treeName) {
   container.appendChild(image);
 
   const name = document.createElement('p');
+  name.className = 'talent-name'; // Add this line
   name.textContent = talent.name;
   container.appendChild(name);
 
