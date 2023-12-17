@@ -138,24 +138,15 @@ function updateTreePointsSpent(treeName) {
   updatePlayerLevel();
 }
 
-function calculateXPForLevel(level) {
-    let xp = 0;
-    for (let i = 1; i <= level; i++) {
-        xp += 10 * Math.pow(1.1, i - 1); // Increment XP for each level
-    }
-    return Math.floor(xp);
-}
-
 function updatePlayerLevel() {
     const totalPointsSpent = Object.values(talentTrees).reduce((total, tree) => total + tree.pointsSpent, 0);
     const playerLevelElement = document.getElementById('playerLevel');
     playerLevelElement.textContent = totalPointsSpent;
 
-    // Update the XP display based on the level
+    // Update the XP display
     const playerXPElement = document.getElementById('playerXP');
     playerXPElement.textContent = calculateXPForLevel(totalPointsSpent);
 }
-
 
 // Call this function to initialize the talent trees on page load
 document.addEventListener('DOMContentLoaded', () => {
