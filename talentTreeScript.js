@@ -138,6 +138,13 @@ function updatePointsDisplay(talent, treeName) {
 function updateTreePointsSpent(treeName) {
   const pointsSpentElement = document.getElementById(`pointsSpent${treeName}`);
   pointsSpentElement.textContent = talentTrees[treeName].pointsSpent;
+  updatePlayerLevel();
+}
+
+function updatePlayerLevel() {
+  const totalPointsSpent = Object.values(talentTrees).reduce((total, tree) => total + tree.pointsSpent, 0);
+  const playerLevelElement = document.getElementById('playerLevel');
+  playerLevelElement.textContent = totalPointsSpent;
 }
 
 // Call this function to initialize the talent trees on page load
