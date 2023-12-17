@@ -48,7 +48,7 @@
         "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "+2% points if you correctly predicted both teams do not score.", 
         "row": 2 
-      }
+      },
         {
         "id": "6", 
         "name": "Over", 
@@ -57,7 +57,7 @@
         "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "+2% points if you correctly predict an Over outcome.", 
         "row": 3 
-      }
+      },
             {
         "id": "7", 
         "name": "Under", 
@@ -66,7 +66,7 @@
         "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Get +2% points if you correctly predict an Under outcome.", 
         "row": 3
-      }
+      },
             {
         "id": "8", 
         "name": "Team Stickers boost", 
@@ -75,7 +75,7 @@
         "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Bonuses from your Team Stickers are increased by 5%.", 
         "row": 4
-      }
+      },
             {
         "id": "9", 
         "name": "45' game", 
@@ -84,7 +84,7 @@
         "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "If you have the correct outcome at half time, get +3% points.", 
         "row": 4 
-      }
+      },
             {
         "id": "10", 
         "name": "Fast learner", 
@@ -93,7 +93,7 @@
         "imageUrl": "https://cdn-icons-png.flaticon.com/512/77/77305.png", 
         "description": "Get +1% League XP from your predictions", 
         "row": 5
-      }
+      },
             {
         "id": "11", 
         "name": "Both Teams Didn't Score", 
