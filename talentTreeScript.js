@@ -98,8 +98,8 @@ function createTalentElement(talent, treeName) {
   image.src = talent.imageUrl;
   image.alt = talent.name;
   image.title = talent.description; // Tooltip for the description
-  image.addEventListener('click', () => allocatePoint(talent.id, treeName));
-  image.addEventListener('contextmenu', (event) => {
+  container.addEventListener('click', () => allocatePoint(talent.id, treeName));
+  container.addEventListener('contextmenu', (event) => {
     event.preventDefault(); // Prevent the default context menu
     removePoint(talent.id, treeName); // Call removePoint on right click
   });
