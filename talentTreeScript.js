@@ -20,6 +20,11 @@ function renderTalentTrees() {
   const talentTreesElement = document.getElementById('talentTrees');
   talentTreesElement.innerHTML = ''; // Clear existing trees
 
+  const instructions = document.createElement('p');
+  instructions.textContent = "Instructions: \n- This is best used on a computer with a full screen browser window.\n- You can left click to add points, and right click to remove points.\n- Details of the talents are available when hovering on them.";
+  instructions.style.marginBottom = "20px"; // Adds space below the instructions
+  talentTreesElement.appendChild(instructions); // Append the instructions before the trees
+  
   Object.keys(talentTrees).forEach(treeName => {
     const treeData = talentTrees[treeName];
     const treeElement = document.createElement('div');
