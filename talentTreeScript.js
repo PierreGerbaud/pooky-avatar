@@ -20,14 +20,14 @@ function renderTalentTrees() {
   const talentTreesElement = document.getElementById('talentTrees');
   talentTreesElement.innerHTML = ''; // Clear existing trees
 
-  const instructions = document.createElement('p');
-  instructions.textContent = 
-    "Instructions:"<br>
-      "- This is best used on a computer with a full screen browser window." <br>
-      "- You can left click to add points, and right click to remove points." <br>
-      "- Details of the talents are available when hovering on them." <br>
-    ";
-  instructions.style.marginBottom = "20px"; // Adds space below the instructions
+const instructions = document.createElement('p');
+instructions.innerHTML = 
+  "Instructions:<br>" +
+  "- This is best used on a computer with a full screen browser window.<br>" +
+  "- You can left click to add points, and right click to remove points.<br>" +
+  "- Details of the talents are available when hovering on them.<br>";
+instructions.style.marginBottom = "20px"; // Adds space below the instructions
+
   talentTreesElement.appendChild(instructions); // Append the instructions before the trees
   
   Object.keys(talentTrees).forEach(treeName => {
