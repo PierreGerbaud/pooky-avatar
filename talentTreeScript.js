@@ -107,7 +107,7 @@ function createTalentElement(talent, treeName) {
   const image = document.createElement('img');
   image.src = talent.imageUrl;
   image.alt = talent.name;
-  image.title = talent.description; // Tooltip for the description
+  container.title = talent.description; // Tooltip for the description
   container.addEventListener('click', () => allocatePoint(talent.id, treeName));
   container.addEventListener('contextmenu', (event) => {
     event.preventDefault(); // Prevent the default context menu
