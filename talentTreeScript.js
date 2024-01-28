@@ -25,6 +25,7 @@ instructions.innerHTML =
   "Instructions:<br>" +
   "- This is best used on a computer with a full screen browser window.<br>" +
   "- You can left click to add points, and right click to remove points.<br>" +
+  "- !! The XP calculation is outdated as of January 2024.<br>" +
   "- Details of the talents are available when hovering on them.<br>";
 instructions.style.marginBottom = "20px"; // Adds space below the instructions
 
