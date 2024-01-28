@@ -183,7 +183,7 @@ function updatePlayerLevel() {
 function calculateXPForLevel(level) {
     let xp = 0;
     for (let i = 1; i <= level; i++) {
-        xp += 10 * Math.pow(1.1, i - 1); // Incremental XP based on level
+        xp += 10 * Math.pow(1.08, i - 1); // Incremental XP based on level
     }
     return Math.floor(xp);
 }
